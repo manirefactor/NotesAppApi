@@ -1,11 +1,11 @@
 const req = require('express/lib/request');
 const res = require('express/lib/response');
-const mongoose=require('mongoose')
+const mongoose=require('mongoose');
 const express = require('express');
 const Note=require('./models/Post');
 
 const app = express();
-const PORT=8000;
+const port=process.env.PORT || 8000;
 
 //Connect to Db 
 //mongoose.connect('mongodb://localhost:27017/sampledb',()=>console.log('MongoDb is Connected....!!'));
@@ -19,13 +19,13 @@ mongoose.connect('mongodb+srv://manitrak:KvtFpnvCh8VaEHcz@cluster0.sqrev.mongodb
     pass:'KvtFpnvCh8VaEHcz'
 },()=>console.log('MongoDb is Connected....!!'));*/
 
-console.log(`And the server is at http://localhost:${PORT}`);
+console.log(`And the server is at http://localhost:${port}`);
 
 //Middlewares
-app.use(express.json())
+app.use(express.json());
 
 //How to start listening to server
-app.listen(PORT)
+app.listen(port);
 
 //Routes
 app.get('/',(req,res)=>{
@@ -48,7 +48,7 @@ app.get('/gnote/:noteId',async(req,res)=>{
         const note=await Note.findById(req.params.noteId);
         res.json(note);
     }catch(err){
-        res.json({message:err})
+        res.json({message:err});
     }
 
 });
