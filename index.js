@@ -67,7 +67,7 @@ app.get('/gnote/:noteId',async(req,res)=>{
 
 app.delete('/dnote/:Id',async(req,res)=>{
     try{
-        const removedNote=await Note.deleteOne({id:req.params.Id});
+        const removedNote=await Note.deleteOne({_id:req.params.Id});
         res.send('The Note is deleted Successfully 😀');
     }
     catch(err){res.json({message:`Note not found Bro 😢!  ${err}`});}
@@ -77,7 +77,6 @@ app.delete('/dnote/:Id',async(req,res)=>{
 //Post API
 app.post('/pnote',async(req,res)=>{
     const NewNote=new Note({
-        id:req.body.id,
         title:req.body.title,
         dec:req.body.dec,
         date:req.body.date,
@@ -110,8 +109,9 @@ app.post('/pnote',async(req,res)=>{
 app.patch('/upnote/:Id',async(req,res)=>{
     try{
         const updatedNote= await Note.updateOne(
-            {id:req.params.Id},
-            {$set:{title:req.body.title,
+            {_id:req.params.Id},
+            {$set:{
+                title:req.body.title,
                 dec:req.body.dec,
                 date:req.body.date,
                 month:req.body.month,
