@@ -65,20 +65,26 @@ app.get('/gnote/:noteId',async(req,res)=>{
 });
 //DELETE API
 
-app.delete('/dnote/:noteId',async(req,res)=>{
+app.delete('/dnote/:Id',async(req,res)=>{
     try{
-        const removedNote=await Note.deleteOne({_id:req.params.noteId});
-        res.json(removedNote);
+        const removedNote=await Note.deleteOne({_id:req.params.Id});
+        alert('The Note is deleted Successfully 😀');
     }
-    catch(err){res.json({message:`Note not found Bro!  ${err}`});}
+    catch(err){res.json({message:`Note not found Bro 😢!  ${err}`});}
 });
 
 
 //Post API
 app.post('/pnote',async(req,res)=>{
     const NewNote=new Note({
+        id:req.body.id,
         title:req.body.title,
-        nbody:req.body.nbody
+        dec:req.body.dec,
+        date:req.body.date,
+        month:req.body.month,
+        year:req.body.year,
+        hour:req.body.hour,
+        min:req.body.min
     });
     NewNote.save().then(data=>{res.json(data)})
     .catch(err=>{
@@ -101,11 +107,18 @@ app.post('/pnote',async(req,res)=>{
 });
 
 //Update a Note
-app.patch('/upnote/:noteId',async(req,res)=>{
+app.patch('/upnote/:Id',async(req,res)=>{
     try{
         const updatedNote= await Note.updateOne(
-            {_id:req.params.noteId},
-            {$set:{title:req.body.title,nbody:req.body.nbody}},
+            {id:req.params.Id},
+            {$set:{title:req.body.title,
+                dec:req.body.dec,
+                date:req.body.date,
+                month:req.body.month,
+                year:req.body.year,
+                hour:req.body.hour,
+                min:req.body.min}
+            },
             
         );
         res.json(updatedNote);
