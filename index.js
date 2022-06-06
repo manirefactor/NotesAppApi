@@ -67,7 +67,7 @@ app.get('/gnote/:noteId',async(req,res)=>{
 
 app.delete('/dnote/:Id',async(req,res)=>{
     try{
-        const removedNote=await Note.deleteOne({_id:req.params.Id});
+        const removedNote=await Note.deleteOne({id:req.params.Id});
         alert('The Note is deleted Successfully 😀');
     }
     catch(err){res.json({message:`Note not found Bro 😢!  ${err}`});}
