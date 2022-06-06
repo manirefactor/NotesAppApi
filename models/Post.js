@@ -9,9 +9,19 @@ const NotesSchema=mongoose.Schema({
         required:true
     },
     date:{
-        type:Date,
-        default:Date.now
-    }
+        type:String,
+        required:true
+    },
+    month:{
+        type:String,
+        required:true
+    },
+    year:{type:String,
+        required:true},
+    hour:{type:String,
+        required:true},
+    min:{type:String,
+        required:true}
 });
 
 module.exports=mongoose.model('note',NotesSchema);
