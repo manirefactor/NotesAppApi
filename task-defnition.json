@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-2:783288610122:task-definition/first-run-task-definition:1",
+    "taskDefinitionArn": "arn:aws:ecs:ap-south-1:783288610122:task-definition/first-run-task-definition:1",
     "containerDefinitions": [
         {
             "name": "sample-app",
@@ -29,7 +29,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/first-run-task-definition",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-region": "ap-south-1",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
@@ -71,7 +71,7 @@
     ],
     "cpu": "256",
     "memory": "512",
-    "registeredAt": "2022-06-27T12:12:39.279Z",
+    "registeredAt": "2022-06-27T16:20:29.269Z",
     "registeredBy": "arn:aws:iam::783288610122:root",
     "tags": []
 }
